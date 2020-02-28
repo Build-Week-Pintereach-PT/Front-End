@@ -9,7 +9,7 @@ align-items:center;
 `
 
 const Login = () => {
-  const { handleSubmit, register, errors, reset } = useForm();
+  const { handleSubmit, register, errors } = useForm();
   const onSubmit = (values, e) => {
     console.log(values);
     e.target.reset()
@@ -23,10 +23,16 @@ const Login = () => {
         <input
             name="email"
             placeholder="Email"
-            ref={register({ required: true })}
+            ref={register({ 
+              required: true,
+              pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "invalid email address"
+                } })}
         />
         {errors.email && errors.email.type === 'required' && <p>This field is required</p>
         }
+        {errors.email && errors.email.message}
 
         <label>Password</label>
         <input

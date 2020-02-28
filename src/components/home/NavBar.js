@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -10,14 +10,14 @@ justify-content: space-around;
 export default function Navbar() {
     return (
 
-    <div>
+    <Fragment>
         <Navigation>
             <Link to='/'>Home</Link>
             <Link to='/signup'>Sign-Up!</Link>
             <Link to='/login'>Log-in!</Link>
         </Navigation>
 
-    </div>
+    </Fragment>
     )
 
 }
