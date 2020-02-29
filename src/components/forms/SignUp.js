@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import React, { useState} from "react";
+=======
+import React, {useState} from "react";
+>>>>>>> b4c461a28e75975501fff4421a56c4a98fe1fe5c
 import { useForm } from "react-hook-form";
 import styled from 'styled-components'
+import axios from 'axios';
 
 const Form = styled.div`
 display:flex;
@@ -13,10 +18,14 @@ const SignUp = () => {
   const { handleSubmit, register, errors } = useForm([]);
   const onSubmit = (data, e) => {
     console.log(data);
+<<<<<<< HEAD
     setUserData(data)
 console.log(userData)
 // e.target.reset();
 
+=======
+    e.target.reset()
+>>>>>>> b4c461a28e75975501fff4421a56c4a98fe1fe5c
   };
 
   return (
