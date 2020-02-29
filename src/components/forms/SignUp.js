@@ -1,4 +1,4 @@
-import React, {useState,useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import styled from 'styled-components'
 import axios from 'axios';
@@ -13,15 +13,15 @@ const SignUp = () => {
   const [ userData, setUserData ] = useState([])
   const { handleSubmit, register, errors } = useForm([]);
 
-  // const onSubmit = (data, e) => {
-  //   setUserData(data);
-    // console.log("userdata",{userData});
-  //   e.target.reset();
-  // };
+  const onSubmit = (data, e) => {
+    setUserData(data);
+    console.log("userdata",{userData});
+    e.target.reset();
+  };
 
   useEffect(() => {
     axios
-      .post(`/dashboard`,{userData})
+      .post(`https://auth-friends-backend.herokuapp.com/`,{userData})
       .then(response => {
         console.log(response);
       })
@@ -32,7 +32,7 @@ const SignUp = () => {
 
   return (
       
-    <form onSubmit={handleSubmit(setUserData)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
     <Form>
         <label>User Name</label>
         <input
