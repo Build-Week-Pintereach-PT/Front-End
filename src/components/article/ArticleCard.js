@@ -4,7 +4,9 @@ import SaveButton from '../SaveButton'
 const ArticleCard =()=>{
 
 return (
+    <div>
     <SaveButton/>
+    </div>
 )
 
 }

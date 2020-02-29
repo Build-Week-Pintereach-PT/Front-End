@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import NavButtons from '../NavButtons'
 
 const Navigation = styled.div`
 display: flex;
@@ -12,9 +13,7 @@ export default function Navbar() {
 
     <Fragment>
         <Navigation>
-            <Link to='/'>Home</Link>
-            <Link to='/signup'>Sign-Up!</Link>
-            <Link to='/login'>Log-in!</Link>
+            <NavButtons/>
         </Navigation>
 
     </Fragment>

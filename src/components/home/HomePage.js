@@ -1,16 +1,11 @@
 import React from 'react'
+import ArticleList from '../article/ArticleList'
 
 export default function HomePage() {
     return (
 
     <div>
-        <p>ARTICLES</p>
-        <p>ARTICLES</p>
-        <p>ARTICLES</p>
-        <p>ARTICLES</p>
-        <p>ARTICLES</p>
-        <p>ARTICLES</p>
-        <p>ARTICLES</p>
+        <ArticleList/>
 
     </div>
     )
