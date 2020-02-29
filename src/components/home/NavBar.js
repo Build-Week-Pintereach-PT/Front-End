@@ -1,17 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment } from 'react'
+// import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import NavButtons from '../NavButtons'
+
+const Navigation = styled.div`
+display: flex;
+justify-content: space-around;
+`
 
 export default function Navbar() {
     return (
 
-    <div>
-        <navlink>
-            <Link to='/'>Home</Link>
-            <Link to='/signup'>Sign-Up!</Link>
-            <Link to='/login'>Log-in!</Link>
-        </navlink>
+    <Fragment>
+        <Navigation>
+            <NavButtons/>
+        </Navigation>
 
-    </div>
+    </Fragment>
     )
 
 }
