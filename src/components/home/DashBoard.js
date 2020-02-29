@@ -11,6 +11,12 @@ align-items:center;
 const DashBoard = () => {
 
     return (
+        <div>
+            {/* User info via JSX goes below */}
+            <h1>First Name, Last Name</h1>
+            <h2>UserName</h2>
+            <h3>Field of Study</h3>
+            <h3>Occupation</h3>
         <DropDowns>
             <label>Options</label>
             <select name="create">
@@ -25,9 +31,9 @@ const DashBoard = () => {
                 <option value='renameBoard'>Rename</option>
                 <option value='deleteBoard'>Delete</option>
             </select>
-
             <BoardList/>
         </DropDowns>
+        </div>
     )
 
 

@@ -22,12 +22,12 @@ export default function NewBoard() {
         <label>Board Name</label>
         <input
           type="text"
-          name="Description"
+          name="Board Name"
           ref={register({ max: 25, min: 2, maxLength: 50 })}
         />
         <label>Description</label>
         <textarea
-          name="Board Name"
+          name="Description"
           ref={register({ required: true, max: 100, min: 5 })}
         />
         <input type="submit" />

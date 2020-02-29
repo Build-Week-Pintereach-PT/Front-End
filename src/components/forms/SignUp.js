@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import { useForm } from "react-hook-form";
 import styled from 'styled-components'
 
@@ -7,12 +7,15 @@ display:flex;
 flex-direction: column;
 align-items:center;
 `
-
 const SignUp = () => {
+  const [userData, setUserData] = useState([])
+
   const { handleSubmit, register, errors } = useForm([]);
   const onSubmit = (data, e) => {
     console.log(data);
-    e.target.reset()
+    setUserData(data)
+console.log(userData)
+// e.target.reset();
 
   };
 
