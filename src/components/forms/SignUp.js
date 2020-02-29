@@ -13,6 +13,18 @@ const SignUp = () => {
   const { handleSubmit, register, errors } = useForm([]);
   const onSubmit = (data, e) => {
     console.log(data);
+    //post req to server 
+    axios
+      .post('/signup', data)
+      .then((res) => 
+      //update state here
+      // history.push('/login'))
+      console.log(res)
+      )
+      .catch((err) => {
+        console.log(err)
+      });
+    //resets the form after submitted
     e.target.reset()
   };
 
@@ -88,8 +100,16 @@ const SignUp = () => {
         />
 
 <button type="submit">Submit</button>
+<button
+        type="button" href="/login"
+        onClick={() => {
+          // history.push("/login");
+        }}
+      >
+        Already Have An Account? Log In!
+      </button>
       </Form>
-
+      
     </form>
   );
 };
