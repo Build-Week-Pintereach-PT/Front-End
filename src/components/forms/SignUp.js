@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useEffect } from "react";
 import { useForm } from "react-hook-form";
 import styled from 'styled-components'
 import axios from 'axios';
@@ -10,15 +10,29 @@ align-items:center;
 `
 
 const SignUp = () => {
+  const [ userData, setUserData ] = useState([])
   const { handleSubmit, register, errors } = useForm([]);
-  const onSubmit = (data, e) => {
-    console.log(data);
-    e.target.reset()
-  };
+
+  // const onSubmit = (data, e) => {
+  //   setUserData(data);
+    // console.log("userdata",{userData});
+  //   e.target.reset();
+  // };
+
+  useEffect(() => {
+    axios
+      .post(`/dashboard`,{userData})
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log("error", error);
+      });
+  }, [userData]);
 
   return (
       
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(setUserData)}>
     <Form>
         <label>User Name</label>
         <input
