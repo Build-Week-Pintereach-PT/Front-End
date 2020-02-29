@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
 import styled from 'styled-components'
+import axios from 'axios';
 
 const Form = styled.div`
 display:flex;
@@ -13,7 +14,6 @@ const SignUp = () => {
   const onSubmit = (data, e) => {
     console.log(data);
     e.target.reset()
-
   };
 
   return (
