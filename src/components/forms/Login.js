@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm } from "react-hook-form";
-import styled from 'styled-components'
+import styled from 'styled-components';
+import axios from 'axios'
 
 const Form = styled.div`
 display:flex;
@@ -11,6 +12,14 @@ align-items:center;
 const Login = () => {
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = (values, e) => {
+  //   axios.post('/login', values)
+  //   .then(res => {
+  //     console.log(res)
+  //     localStorage.setItem("token", res.data.payload)
+  //     // history.push('/dashboard')
+  //   })
+  //   .catch(err => console.log(err))
+  // }
     console.log(values);
     e.target.reset()
   };
@@ -49,5 +58,5 @@ const Login = () => {
 
     </form>
   );
-};
+      };
 export default Login;

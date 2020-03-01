@@ -102,8 +102,16 @@ const SignUp = () => {
         />
 
 <button type="submit">Submit</button>
+<button
+        type="button" href="/login"
+        onClick={() => {
+          // history.push("/login");
+        }}
+      >
+        Already Have An Account? Log In!
+      </button>
       </Form>
-
+      
     </form>
   );
 };
