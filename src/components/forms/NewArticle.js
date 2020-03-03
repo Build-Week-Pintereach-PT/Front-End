@@ -27,13 +27,12 @@ export default function NewArticle() {
         <input
           type="url"
           name="Article Link"
-          ref={register}
+          ref={register({ required: true})}
         />
 
         <label>Article Description</label>
         <textarea
           name="Article Description"
-          ref={register}
         />
         <input type="submit" />
       </NewArticleInputs>

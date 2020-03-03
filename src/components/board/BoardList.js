@@ -10,7 +10,6 @@ export default function BoardList(){
             <p>Boards</p>
             <p>Boards</p>
             <p>Boards</p>
-
         </div>
     )
 }
