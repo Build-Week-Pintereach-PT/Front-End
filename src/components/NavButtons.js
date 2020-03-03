@@ -34,7 +34,7 @@ export default function NavButtons() {
       3,
       {
         opacity:1,
-        x:6,
+        x:-30,
         ease: Power3.easeOut
       }
       )},[])
@@ -45,7 +45,7 @@ export default function NavButtons() {
       3,
       {
         opacity:1,
-        x:-6,
+        x:30,
         ease: Power3.easeOut
       }
       )},[])
@@ -65,10 +65,11 @@ export default function NavButtons() {
 
   return (
     <div   className={classes.root}>
-      <Button ref={el => {homeButt = el }} color="primary" href='/'>Home</Button>
-      <Button ref={el => {logInButt = el }}color="primary" href='/login'>Log In</Button>
-      <Button ref={el => {signButt = el }}color="primary" href='/signup'>Sign Up</Button>
-      <Button ref={el => {logOutButt = el }}color="primary" href='/logout'>Log Out</Button>
+      <Button className="topNav" ref={el => {homeButt = el }} color="primary" href='/'>Home</Button>
+      <Button className="topNav"ref={el => {logInButt = el }}color="primary" href='/login'>Log In</Button>
+      <Button className="topNav" ref={el => {signButt = el }}color="primary" href='/signup'>Sign Up</Button>
+      <Button className="topNav" ref={el => {logOutButt = el }}color="primary" href='/logout'>Log Out</Button>
     </div>
   );
 }
+
