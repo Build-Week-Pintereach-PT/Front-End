@@ -1,15 +1,36 @@
-import React, {useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import styled from 'styled-components'
 import axios from 'axios';
+import { TweenMax, Power3 } from 'gsap';
+ 
+const Wrapper = styled.div`
+display:flex;
+justify-content:center;
+
+`
 
 const Form = styled.div`
 display:flex;
 flex-direction: column;
-align-items:center;
+justify-content:space-around;
+align-items: center;
+`
+
+const FormDiv = styled.div`
+display:flex;
+flex-direction: column;
+justify-content: flex-start;
+width: 30vw;
+padding: 10px;
+border: 5px solid #beebe9;
+border-radius: 9px;
+box-shadow:10px 10px 60px 10px black;
 `
 
 const SignUp = () => {
+  let signup = useRef()
+
   const [ userData, setUserData ] = useState([])
   const { handleSubmit, register, errors } = useForm([]);
 
@@ -30,10 +51,21 @@ const SignUp = () => {
       });
   }, [userData]);
 
+  useEffect(() => {
+    TweenMax.to(
+      signup,
+      2,
+      {
+        opacity:1,
+        y:50,
+        ease: Power3.easeOut
+      }
+      )},[])
+
   return (
-      
-    <form onSubmit={handleSubmit(onSubmit)}>
-    <Form>
+      <Wrapper>
+    <FormDiv ref={el =>{signup=el}} onSubmit={handleSubmit(onSubmit)}>
+    <Form >
         <label>User Name</label>
         <input
             name="username"
@@ -112,7 +144,8 @@ const SignUp = () => {
       </button>
       </Form>
       
-    </form>
+    </FormDiv>
+    </Wrapper>
   );
 };
 export default SignUp;
