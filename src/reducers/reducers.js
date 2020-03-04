@@ -2,7 +2,10 @@ import {
     REGISTER_START,
     REGISTER_SUCCESS,
     LOGIN_START,
-    LOGIN_SUCCESS} from '../actions/index';
+    LOGIN_SUCCESS,
+    FETCHING,
+    SUCCESS,
+    FAILURE} from '../actions/index';
 
     const initialState = {
         LoggingIn: false,
@@ -33,6 +36,25 @@ import {
                     isLoggedIn: true,
                     token: action.payload
                 };
+                case FETCHING:
+                    return {
+                        ...state,
+                        isFetching: true,
+                    }
+                case SUCCESS:
+                    return {
+                        ...state,
+                        // isFetching: false,
+                        articles: action.payload,
+                        isFetching: false
+                    }
+                case FAILURE:
+                    return {
+                        ...state,
+                        isFetching: false,
+                        err: action.payload
+                    }
+        
             default:
                 return state;
         }

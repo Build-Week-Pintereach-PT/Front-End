@@ -4,7 +4,7 @@ export const AxiosWithAuth = () => {
     const token = localStorage.getItem("token");
 
     return axios.create({
-        baseURL: "https://pintreachbackend.herokuapp.com/api/",
+        baseURL: "https://cors-anywhere.herokuapp.com/https://pintreachbackend.herokuapp.com/api/",
         headers: {
             Authorization: token
         }
