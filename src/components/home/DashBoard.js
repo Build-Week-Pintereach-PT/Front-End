@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BoardList from '../board/BoardList'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import { getArticles } from '../../actions/index'
 import { connect } from "react-redux"
+import axios from 'axios'
 
 const DropDowns =styled.div`
 display:flex;  
@@ -12,10 +13,22 @@ align-items:center;
 `
 
 const DashBoard = (props) => {
+    const [ articles, setArticles] = useState([])
 const history = useHistory();
 const handleChange = (event)=>{
     history.push(event.target.value)
 }
+
+useEffect(() =>{
+    axios
+    // .get(`https://cors-anywhere.herokuapp.com/https://pintreachbackend.herokuapp.com/api/articles/`)
+    .get(`https://rickandmortyapi.com/api/character/`)
+      .then(response => setArticles(response.data.results))
+      .catch(error => console.log('error!!!',error))
+   },[])
+   console.log('articles',articles)
+
+
     return (
         <div>
             <h1>First Name Last Name</h1>
@@ -38,7 +51,7 @@ const handleChange = (event)=>{
                 <option value='deleteBoard'>Delete</option>
             </select>
 
-            <BoardList/>
+            <BoardList articles={articles}/>
         </DropDowns>
         </div>
     )
