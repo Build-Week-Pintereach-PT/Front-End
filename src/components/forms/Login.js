@@ -1,6 +1,8 @@
-import React, { useRef,useState, useEffect} from "react";
+import React, { useRef,useState, useEffect, useHistory} from "react";
 import { useForm } from "react-hook-form";
 import styled from 'styled-components';
+import { connect } from "react-redux"
+import { login } from '../../actions/index'
 // import axios from 'axios'
 import { TweenMax, Power3 } from 'gsap';
 import './Login.css'
@@ -20,8 +22,7 @@ box-shadow:10px 10px 60px 10px black;
 `
 
 
-const Login = () => {
-
+const Login = (props) => {
   let login = useRef()
   
   useEffect(() => {
@@ -38,14 +39,8 @@ const Login = () => {
 
   const { handleSubmit, register, errors } = useForm();
   const onSubmit = (values, e) => {
-  //   axios.post('/login', values)
-  //   .then(res => {
-  //     console.log(res)
-  //     localStorage.setItem("token", res.data.payload)
-  //     // history.push('/dashboard')
-  //   })
-  //   .catch(err => console.log(err))
-  // }
+    props.login(values);
+    props.history.push("/dashboard")
     console.log(values);
     e.target.reset()
   };
@@ -54,7 +49,8 @@ const Login = () => {
       <Wrapper>
     <FormDiv ref={el => {login = el}} onSubmit={handleSubmit(onSubmit)}>
     <form className='login-form'>
-        <label>Email</label>
+      <label>Login: </label>
+        {/* <label>Email</label>
         <input
             name="email"
             placeholder="Email"
@@ -67,7 +63,19 @@ const Login = () => {
         />
         {errors.email && errors.email.type === 'required' && <p>This field is required</p>
         }
-        {errors.email && errors.email.message}
+        {errors.email && errors.email.message} */}
+        <label>User Name</label>
+          <input
+            name="username"
+            placeholder="Username"
+            ref={register({ required: true, minLength: 2 })}
+          />
+          {errors.username && errors.username.type === "required" && (
+            <p>This field is required</p>
+          )}
+          {errors.username && errors.username.type === "minLength" && (
+            <p>This field needs to be at least 2 characters long</p>
+          )}
 
         <label>Password</label>
         <input
@@ -86,4 +94,11 @@ const Login = () => {
     </Wrapper>
   );
       };
-export default Login;
+
+    const mapStateToProps = state => ({
+      isLoggingIn: state.isLoggingIn
+    });
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);
