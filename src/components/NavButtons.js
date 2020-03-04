@@ -12,21 +12,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NavButtons() {
-  let homeButt = useRef()
   let logInButt = useRef()
   let signButt = useRef()
   let logOutButt = useRef()
-
-  useEffect(() => {
-    TweenMax.to(
-      homeButt,
-      2,
-      {
-        opacity:1,
-        x:-100,
-        ease: Power3.easeOut
-      }
-      )},[])
 
   useEffect(() => {
     TweenMax.to(
@@ -65,7 +53,6 @@ export default function NavButtons() {
 
   return (
     <div   className={classes.root}>
-      <Button className="topNav" ref={el => {homeButt = el }} color="primary" href='/'>Home</Button>
       <Button className="topNav"ref={el => {logInButt = el }}color="primary" href='/login'>Log In</Button>
       <Button className="topNav" ref={el => {signButt = el }}color="primary" href='/signup'>Sign Up</Button>
       <Button className="topNav" ref={el => {logOutButt = el }}color="primary" href='/logout'>Log Out</Button>

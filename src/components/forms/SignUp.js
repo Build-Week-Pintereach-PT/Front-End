@@ -2,7 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-// import axios from 'axios';
+import { connect } from 'react-redux';
+import { register } from '../../actions/index'
 import { TweenMax, Power3 } from "gsap";
 import "./Signup.css";
 
@@ -21,31 +22,26 @@ const FormDiv = styled.div`
   box-shadow: 10px 10px 60px 10px black;
 `;
 
-const SignUp = () => {
+const SignUp = (props) => {
   let signup = useRef();
-
-  const [userData, setUserData] = useState([]);
-  const { handleSubmit, register, errors } = useForm([]);
+  const history = useHistory();
+  // const [userData, setUserData] = useState({
+  //   newCreds: {
+  //     username: "",
+  //     password: ""
+  //   }
+  // });
+  const { handleSubmit, register, errors, setValue } = useForm([]);
 
   const onSubmit = (data, e) => {
-    setUserData(data);
+    props.register(data);
+    history.push('/login')
     console.log("onSubmit data", { data });
-    console.log("userData state", { userData });
     e.target.reset();
 
 
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .post(`https://auth-friends-backend.herokuapp.com/`,{userData})
-  //     .then(response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log("error", error);
-  //     });
-  // }, [userData]);
 
   useEffect(() => {
     TweenMax.to(signup, 1, {
@@ -55,12 +51,13 @@ const SignUp = () => {
     });
   }, []);
 
-  const history = useHistory();
+  
 
   return (
     <Wrapper >
       <FormDiv onSubmit={handleSubmit(onSubmit)} ref={el => {signup = el;}}>
         <form className="signup-form" >
+          <label>Sign Up:</label>
           <label>User Name</label>
           <input
             name="username"
@@ -74,7 +71,7 @@ const SignUp = () => {
             <p>This field needs to be at least 2 characters long</p>
           )}
 
-          <label>Email</label>
+          {/* <label>Email</label>
           <input
             name="email"
             placeholder="Email"
@@ -89,7 +86,7 @@ const SignUp = () => {
           {errors.email && errors.email.type === "required" && (
             <p>This field is required</p>
           )}
-          {errors.email && errors.email.message}
+          {errors.email && errors.email.message} */}
 
           <label>Password</label>
           <input
@@ -104,7 +101,7 @@ const SignUp = () => {
           {errors.password && errors.password.type === "minLength" && (
             <p>This field needs to be at least 6 characters long</p>
           )}
-
+{/* 
           <label>First Name</label>
           <input
             name="fName"
@@ -131,7 +128,7 @@ const SignUp = () => {
             name="occupation"
             placeholder="Occupation"
             ref={register({ required: false })}
-          />
+          /> */}
 
           <button type="submit">Submit</button>
           <button
@@ -148,4 +145,12 @@ const SignUp = () => {
     </Wrapper>
   );
 };
-export default SignUp;
+
+const mapStateToProps = state => ({
+  LoggingIn: state.LoggingIn
+});
+
+export default connect(
+  mapStateToProps,
+  { register }
+)(SignUp);
