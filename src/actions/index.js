@@ -7,8 +7,10 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
 export const register = creds => dispatch => {
   dispatch({ type: REGISTER_START });
-  return AxiosWithAuth()
-    .post("auth/register", creds)
+  console.log('index.js actions line 10');
+  console.log(creds);
+  return axios
+    .post("https://cors-anywhere.herokuapp.com/https://pintreachbackend.herokuapp.com/api/auth/register", creds)
     .then(res => {
       console.log(res);
       localStorage.setItem('token', res.data.token);
@@ -38,3 +40,19 @@ export const login = creds => dispatch => {
         dispatch({ type: LOGIN_FAILURE, payload: err });
       });
   };
+
+export const FETCHING  = "FETCHING";
+export const SUCCESS = "SUCCESS";
+export const FAILURE = "FAILURE";
+
+export const getArticles = () => dispatch => {
+    dispatch({ type: FETCHING })
+    axios
+        .get('https://cors-anywhere.herokuapp.com/https://pintreachbackend.herokuapp.com/api/articles/')
+        .then(res => {
+            dispatch({ type: SUCCESS, payload: res.data})
+        })
+        .catch(err => {
+            dispatch({ type: FAILURE, payload: err})
+        })
+}

@@ -54,7 +54,14 @@ const SignUp = (props) => {
 
   return (
     <Wrapper >
-      <FormDiv onSubmit={handleSubmit(onSubmit)} ref={el => {signup = el;}}>
+      <FormDiv
+        onSubmit={handleSubmit(onSubmit)}
+        ref={
+          el => {
+            signup = el;
+          }
+        }
+      >
         <form className="signup-form" >
           <label>Sign Up:</label>
           <label>User Name</label>

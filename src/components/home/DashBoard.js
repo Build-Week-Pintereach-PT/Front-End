@@ -2,6 +2,8 @@ import React from 'react'
 import BoardList from '../board/BoardList'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
+import { getArticles } from '../../actions/index'
+import { connect } from "react-redux"
 
 const DropDowns =styled.div`
 display:flex;  
@@ -9,7 +11,7 @@ flex-direction:column;
 align-items:center;
 `
 
-const DashBoard = () => {
+const DashBoard = (props) => {
 const history = useHistory();
 const handleChange = (event)=>{
     history.push(event.target.value)
@@ -43,4 +45,12 @@ const handleChange = (event)=>{
 
 
 }
-export default DashBoard;
+
+const mapStateToProps = state => ({
+    isFetching: state.isFetching
+})
+
+export default connect(
+    mapStateToProps,
+    { getArticles }
+)(DashBoard);
