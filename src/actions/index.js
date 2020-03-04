@@ -8,11 +8,10 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const register = creds => dispatch => {
   dispatch({ type: REGISTER_START });
   return AxiosWithAuth()
-    .post("auth/register", creds, {
-      headers: { Authorization: localStorage.getItem("token") }
-    })
+    .post("auth/register", creds)
     .then(res => {
       console.log(res);
+      localStorage.setItem('token', res.data.token);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data});
     })
     .catch(err => {
@@ -28,9 +27,7 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const login = creds => dispatch => {
     dispatch({ type: LOGIN_START });
     return AxiosWithAuth()
-      .post("auth/login", creds, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
+      .post("auth/login", creds)
       .then(res => {
         localStorage.setItem("token", res.data.token);
         console.log(res);
