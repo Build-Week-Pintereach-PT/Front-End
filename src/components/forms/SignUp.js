@@ -39,7 +39,6 @@ const SignUp = (props) => {
     console.log("onSubmit data", { data });
     e.target.reset();
 
-
   };
 
 
