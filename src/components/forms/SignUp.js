@@ -38,8 +38,6 @@ const SignUp = (props) => {
     history.push('/login')
     console.log("onSubmit data", { data });
     e.target.reset();
-
-
   };
 
 
