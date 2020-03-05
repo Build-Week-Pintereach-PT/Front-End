@@ -1,6 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { addBoards } from '../../actions/index'
+import { useHistory } from "react-router-dom"
 
 const NewBoardInputs = styled.div`
   display: flex;
@@ -8,9 +11,17 @@ const NewBoardInputs = styled.div`
   align-items: center;
 `;
 
-export default function NewBoard() {
+function NewBoard(props) {
+  const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = function(data, e) {
+    const newData = {
+      ...data,
+      user_id: 1
+    }
+    props.addBoards(newData)
+    history.push('/dashboard')
+    console.log("newData", newData)
     console.log(data);
     console.log(errors);
     e.target.reset();
@@ -22,16 +33,20 @@ export default function NewBoard() {
         <label>Board Name</label>
         <input
           type="text"
-          name="Description"
+          name="name"
           ref={register({ max: 25, min: 2, maxLength: 50 })}
-        />
-        <label>Description</label>
-        <textarea
-          name="Board Name"
-          ref={register({ required: true, max: 100, min: 5 })}
         />
         <input type="submit" />
       </NewBoardInputs>
     </form>
   );
 }
+
+const mapStateToProps = state => ({
+  LoggingIn: state.LoggingIn
+});
+
+export default connect(
+  mapStateToProps,
+  { addBoards }
+)(NewBoard);

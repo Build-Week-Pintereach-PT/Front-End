@@ -7,17 +7,16 @@ flex-direction:column;
 align-items:center;
 `
 
-export const BoardCard = () => {
+export const BoardCard = (props) => {
+    console.log(props)
     return (
         <div>
-            <DropDowns>
-            <label>Edit</label>
-            <select name="edit">
-                <option value='blank'></option>
-                <option value='renameBoard'>Rename</option>
-                <option value='deleteBoard'>Delete</option>
-            </select>
-        </DropDowns>
+            
+                <h3>{props.index.name}</h3>
+                <button>Edit</button>
+                
+                <button>Delete</button>
+    
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import axios from "axios";
 import {AxiosWithAuth} from '../utils/axiosWithAuth';
+import Axios from "axios";
 
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -32,7 +33,7 @@ export const login = creds => dispatch => {
       .post("/api/user/login", creds)
       .then(res => {
         localStorage.setItem("token", res.data.message.token);
-        console.log(res);
+        console.log("from login action", res);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.id });
       })
       .catch(err => {
@@ -48,11 +49,57 @@ export const FAILURE = "FAILURE";
 export const getBoards = (id) => dispatch => {
     dispatch({ type: FETCHING })
     AxiosWithAuth()
-        .get(`/api/boards/user/${id}`)
+        .get(`/api/boards`)
         .then(res => {
+          console.log("from get", res)
             dispatch({ type: SUCCESS, payload: res.data})
         })
         .catch(err => {
             dispatch({ type: FAILURE, payload: err})
         })
 }
+
+export const ADD_BOARD_START = "ADD_BOARD_START";
+export const ADD_BOARD_SUCCESS = "ADD_BOARD_SUCCESS";
+export const ADD_BOARD_FAILURE = "ADD_BOARD_FAILURE";
+
+  export const addBoards = (item) => dispatch => {
+    AxiosWithAuth()
+      .post(`/api/boards`, item)
+      .then(res => {
+        dispatch({ type: ADD_BOARD_START, payload: res.data})
+      })
+      .catch(err => {
+        dispatch({ type: FAILURE, payload: err})
+      })
+  }
+
+export const EDIT_BOARD_START = "EDIT_BOARD_START";
+export const EDIT_BOARD_FAILURE = "EDIT_BOARD_START";
+
+  export const editBoards = (id, editedBoard) => dispatch => {
+    AxiosWithAuth()
+    .put(`/api/articles/${id}`)
+    .then(res => {
+      dispatch({type: EDIT_BOARD_START, payload: editedBoard})
+    })
+    .catch(err => {
+      dispatch({ type: FAILURE, payload: err})
+    })
+  }
+
+  export const DELETE_BOARD_START = "DELETE_BOARD_START";
+  export const DELETE_BOARD_FAILURE = "DELETE_BOARD_FAILURE";
+
+  export const deleteBoards = (id) => dispatch => {
+    AxiosWithAuth()
+    .delete(`/api/boards/${id}`)
+    .then(res => {
+      dispatch({type: DELETE_BOARD_START, payload: id })
+      
+    })
+    .catch(err => {
+      dispatch({ type: FAILURE, payload: err})
+    })
+  }
+
