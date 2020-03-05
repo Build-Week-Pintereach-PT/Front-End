@@ -9,7 +9,9 @@ import {
 
     const initialState = {
         LoggingIn: false,
-        isLoggedIn: false
+        isLoggedIn: false,
+        isFetching: false,
+        boards: []
     }
 
     const reducer = (state = initialState, action) => {
@@ -45,7 +47,7 @@ import {
                     return {
                         ...state,
                         // isFetching: false,
-                        articles: action.payload,
+                        boards: action.payload,
                         isFetching: false
                     }
                 case FAILURE:

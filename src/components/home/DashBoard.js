@@ -2,7 +2,7 @@ import React from 'react'
 import BoardList from '../board/BoardList'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import { getArticles } from '../../actions/index'
+import { getBoards } from '../../actions/index'
 import { connect } from "react-redux"
 
 const DropDowns =styled.div`
@@ -52,5 +52,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getArticles }
+    { getBoards }
 )(DashBoard);

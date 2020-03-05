@@ -10,7 +10,7 @@ export const register = creds => dispatch => {
   console.log('index.js actions line 10');
   console.log(creds);
   return axios
-    .post("https://cors-anywhere.herokuapp.com/https://pintreachbackend.herokuapp.com/api/auth/register", creds)
+    .post("https://build-week-pintereach-pt.herokuapp.com/api/user/register", creds)
     .then(res => {
       console.log(res);
       localStorage.setItem('token', res.data.token);
@@ -29,9 +29,9 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const login = creds => dispatch => {
     dispatch({ type: LOGIN_START });
     return AxiosWithAuth()
-      .post("auth/login", creds)
+      .post("/api/user/login", creds)
       .then(res => {
-        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("token", res.data.message.token);
         console.log(res);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data.id });
       })
@@ -45,10 +45,10 @@ export const FETCHING  = "FETCHING";
 export const SUCCESS = "SUCCESS";
 export const FAILURE = "FAILURE";
 
-export const getArticles = () => dispatch => {
+export const getBoards = (id) => dispatch => {
     dispatch({ type: FETCHING })
-    axios
-        .get('https://cors-anywhere.herokuapp.com/https://pintreachbackend.herokuapp.com/api/articles/')
+    AxiosWithAuth()
+        .get(`/api/boards/user/${id}`)
         .then(res => {
             dispatch({ type: SUCCESS, payload: res.data})
         })

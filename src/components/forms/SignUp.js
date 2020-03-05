@@ -77,7 +77,7 @@ const SignUp = (props) => {
             <p>This field needs to be at least 2 characters long</p>
           )}
 
-          {/* <label>Email</label>
+          <label>Email</label>
           <input
             name="email"
             placeholder="Email"
@@ -92,7 +92,7 @@ const SignUp = (props) => {
           {errors.email && errors.email.type === "required" && (
             <p>This field is required</p>
           )}
-          {errors.email && errors.email.message} */}
+          {errors.email && errors.email.message}
 
           <label>Password</label>
           <input
@@ -107,24 +107,18 @@ const SignUp = (props) => {
           {errors.password && errors.password.type === "minLength" && (
             <p>This field needs to be at least 6 characters long</p>
           )}
-{/* 
-          <label>First Name</label>
+
+          <label>Name</label>
           <input
-            name="fName"
+            name="name"
             placeholder="First Name"
             ref={register({ required: false })}
           />
 
-          <label>Last Name</label>
-          <input
-            name="lName"
-            placeholder="Last Name"
-            ref={register({ required: false })}
-          />
 
           <label>Field of Study</label>
           <input
-            name="study"
+            name="field_of_study"
             placeholder="Field of Study"
             ref={register({ required: false })}
           />
@@ -134,7 +128,7 @@ const SignUp = (props) => {
             name="occupation"
             placeholder="Occupation"
             ref={register({ required: false })}
-          /> */}
+          />
 
           <button type="submit">Submit</button>
           <button
