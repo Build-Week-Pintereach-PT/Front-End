@@ -2,7 +2,7 @@ import React from 'react'
 import BoardList from '../board/BoardList'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import { getArticles } from '../../actions/index'
+import { getBoards } from '../../actions/index'
 import { connect } from "react-redux"
 
 const DropDowns =styled.div`
@@ -18,10 +18,7 @@ const handleChange = (event)=>{
 }
     return (
         <div>
-            <h1>First Name Last Name</h1>
-            <h2>User Name</h2>
-            <h3>Field Of Study</h3>
-            <h3>Occupation</h3>
+          <h2>Hi, {props.username}</h2>
 
         <DropDowns>
             <label>Create</label>
@@ -30,14 +27,6 @@ const handleChange = (event)=>{
                 <option  value='/newboard'>Create Board</option>
                 <option value='/newarticle'>Create Article</option>
             </select>
-{/* Need to implement  */}
-            <label>Edit</label>
-            <select name="edit">
-                <option value='blank'></option>
-                <option value='renameBoard'>Rename</option>
-                <option value='deleteBoard'>Delete</option>
-            </select>
-
             <BoardList/>
         </DropDowns>
         </div>
@@ -52,5 +41,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getArticles }
+    { getBoards }
 )(DashBoard);

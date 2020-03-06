@@ -50,20 +50,6 @@ const Login = (props) => {
     <FormDiv ref={el => {login = el}} onSubmit={handleSubmit(onSubmit)}>
     <form className='login-form'>
       <label>Login: </label>
-        {/* <label>Email</label>
-        <input
-            name="email"
-            placeholder="Email"
-            ref={register({ 
-              required: true,
-              pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "invalid email address"
-                } })}
-        />
-        {errors.email && errors.email.type === 'required' && <p>This field is required</p>
-        }
-        {errors.email && errors.email.message} */}
         <label>User Name</label>
           <input
             name="username"

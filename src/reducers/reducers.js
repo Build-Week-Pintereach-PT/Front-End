@@ -5,11 +5,24 @@ import {
     LOGIN_SUCCESS,
     FETCHING,
     SUCCESS,
-    FAILURE} from '../actions/index';
+    FAILURE,
+    ADD_BOARD_START,
+    ADD_BOARD_SUCCESS,
+    ADD_BOARD_FAILURE,
+    EDIT_BOARD_START,
+    EDIT_BOARD_SUCCESS,
+    EDIT_BOARD_FAILURE,
+    DELETE_BOARD_START,
+    DELETE_BOARD_FAILURE} from '../actions/index';
 
     const initialState = {
         LoggingIn: false,
-        isLoggedIn: false
+        isLoggedIn: false,
+        isFetching: false,
+        editing: false,
+        boards: [],
+        articles: [],
+
     }
 
     const reducer = (state = initialState, action) => {
@@ -45,7 +58,7 @@ import {
                     return {
                         ...state,
                         // isFetching: false,
-                        articles: action.payload,
+                        boards: action.payload,
                         isFetching: false
                     }
                 case FAILURE:
@@ -54,7 +67,40 @@ import {
                         isFetching: false,
                         err: action.payload
                     }
-        
+                case ADD_BOARD_START:
+                    return {
+                        ...state,
+                        boards: [...state.boards, action.payload],
+                        addBoard: true
+                    }
+                case EDIT_BOARD_START:
+                    return {
+                        ...state,
+                        editing: true
+                    }
+                case EDIT_BOARD_SUCCESS: 
+                    return {
+                        ...state,
+                        boards: state.boards.map(board => {
+                            console.log('reducer', board.id, action.payload )
+                            console.log("edit reducer", action.payload.id, action.payload.object)
+                            if (board.id === action.payload.id) {
+                               
+                                return action.payload.object
+                            }
+                            else {
+                                return board;
+                            }
+                       })
+                   }
+                   case DELETE_BOARD_START:
+                       return {
+                        ...state,
+                        boards: state.boards.filter(board => (
+                            board.id != action.payload
+                        ))
+                       }
+            
             default:
                 return state;
         }

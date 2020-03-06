@@ -36,3 +36,48 @@
     transform: rotate(360deg);
   }
 }
+
+.App {
+  display: grid;
+  color: black;
+  background-image: url('./background.jpg');
+  background-position: cover;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+  /* border: 1em solid greenyellow; */
+  /* grid-gap: 20px;
+  max-width: 1260px;
+  min-height: 500px; */
+}
+
+.Header {
+  color: #443e3e;
+  text-shadow: 1px 1px 5px #fff;
+}
+.card{ 
+  display: flex;
+}
+/* write your parent styles in here for your App.js */
+.card-parent {
+  flex-direction: row;
+  background-color: #8ac6d1;
+  border: 0.5em solid #8ac6d1;
+  border-radius: 5px;
+  margin: 2em;
+}
+.header-bar{
+  background-color: black;
+  font-size: 2rem;
+  width: 100%;
+}
+
+button {
+  background-color: #ffe3ed;
+  color: #443e3e;
+  text-shadow: 1px 1px 5px #fff;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  font-weight: bold;
+}
