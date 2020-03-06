@@ -10,6 +10,7 @@ import {
     ADD_BOARD_SUCCESS,
     ADD_BOARD_FAILURE,
     EDIT_BOARD_START,
+    EDIT_BOARD_SUCCESS,
     EDIT_BOARD_FAILURE,
     DELETE_BOARD_START,
     DELETE_BOARD_FAILURE} from '../actions/index';
@@ -18,6 +19,7 @@ import {
         LoggingIn: false,
         isLoggedIn: false,
         isFetching: false,
+        editing: false,
         boards: [],
         articles: [],
 
@@ -71,12 +73,20 @@ import {
                         boards: [...state.boards, action.payload],
                         addBoard: true
                     }
-                case EDIT_BOARD_START: 
+                case EDIT_BOARD_START:
+                    return {
+                        ...state,
+                        editing: true
+                    }
+                case EDIT_BOARD_SUCCESS: 
                     return {
                         ...state,
                         boards: state.boards.map(board => {
+                            console.log('reducer', board.id, action.payload )
+                            console.log("edit reducer", action.payload.id, action.payload.object)
                             if (board.id === action.payload.id) {
-                                return action.payload
+                               
+                                return action.payload.object
                             }
                             else {
                                 return board;

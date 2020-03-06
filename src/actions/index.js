@@ -75,13 +75,18 @@ export const ADD_BOARD_FAILURE = "ADD_BOARD_FAILURE";
   }
 
 export const EDIT_BOARD_START = "EDIT_BOARD_START";
+export const EDIT_BOARD_SUCCESS = "EDIT_BOARD_SUCCESS";
 export const EDIT_BOARD_FAILURE = "EDIT_BOARD_START";
 
-  export const editBoards = (id, editedBoard) => dispatch => {
+  export const editBoards = (id, { user_id, name }) => dispatch => {
+    console.log("from PUT", { user_id, name })
+    let  theGoods = { user_id, name };
+    dispatch({ type: EDIT_BOARD_START })
     AxiosWithAuth()
-    .put(`/api/articles/${id}`)
+    .put(`/api/boards/${id}`, theGoods)
     .then(res => {
-      dispatch({type: EDIT_BOARD_START, payload: editedBoard})
+      console.log("from PUT", res.data)
+      dispatch({type: EDIT_BOARD_SUCCESS, payload: {id: id, object: {user_id, name, id}}})
     })
     .catch(err => {
       dispatch({ type: FAILURE, payload: err})

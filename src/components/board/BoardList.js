@@ -17,6 +17,7 @@ const BoardList = (props) =>  {
     }, [])
 
     const editBoard = board => {
+
         setEditing(true);
         setBoardToEdit(board);
     }
@@ -32,12 +33,16 @@ const BoardList = (props) =>  {
         <div>
             {props.boards.length > 0 && 
             props.boards.map((index) => {
-                return ( <div>
-            
-                    <h3>{index.name}</h3>
-                    <button onClick={() => editBoard(index)}>Edit</button>
-                    <button value={index.id} onClick={handleDelete}>Delete</button>
-            </div>)
+                return ( 
+                    <div className="card">
+                        <div className="card-parent">
+                        <h3>{index.name}</h3>
+                        <button>View Articles</button>
+                        <button onClick={() => editBoard(index)}>Edit</button>
+                        <button value={index.id} onClick={handleDelete}>Delete</button>
+                        </div>
+                    </div>
+                )
 
             })}
                {editing && (

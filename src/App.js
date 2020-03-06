@@ -14,9 +14,9 @@ import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <NavBar/>
-      <h1>Welcome to Pintereach!</h1>
+      <h1 className="Header">Welcome to Pintereach!</h1>
       <Route exact path= '/signup' component= {SignUp}/>
       <Route exact path='/login' component={Login}/>
       <PrivateRoute exact path='/dashboard' component={DashBoard}/>  
